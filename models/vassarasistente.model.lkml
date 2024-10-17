@@ -21,4 +21,3 @@ explore: questionsets_vassar {}
 explore: session_vassar {}
 
 explore: users_vassar {}
-

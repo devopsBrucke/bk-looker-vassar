@@ -14,6 +14,10 @@ explore: option_vassar {}
 
 explore: coupons_vassar {}
 
+explore: profiling {}
+
+explore: profiling_answers {}
+
 explore: questions_vassar {}
 
 explore: questionsets_vassar {}
@@ -21,3 +25,5 @@ explore: questionsets_vassar {}
 explore: session_vassar {}
 
 explore: users_vassar {}
+
+explore: weeks_completed {}

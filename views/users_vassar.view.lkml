@@ -43,10 +43,6 @@ view: users_vassar {
     type: string
     sql: ${TABLE}."phone" ;;
   }
-  dimension: profiling {
-    type: string
-    sql: ${TABLE}."profiling" ;;
-  }
   dimension: score {
     type: number
     sql: ${TABLE}."score" ;;
@@ -54,10 +50,6 @@ view: users_vassar {
   dimension: surname {
     type: string
     sql: ${TABLE}."surname" ;;
-  }
-  dimension: weeks_completed {
-    type: string
-    sql: ${TABLE}."weeks_completed" ;;
   }
   measure: count {
     type: count

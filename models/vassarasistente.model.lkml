@@ -27,3 +27,5 @@ explore: session_vassar {}
 explore: users_vassar {}
 
 explore: weeks_completed {}
+
+explore: usuarios_por_semana {}

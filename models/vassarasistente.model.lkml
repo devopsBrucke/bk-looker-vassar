@@ -22,3 +22,17 @@ explore: session_vassar {}
 
 explore: users_vassar {}
 
+explore: total_registros {}
+explore: conversaciones_iniciadas_porcentaje {}
+explore: interaccion_porcentaje {}
+
+explore: week1_completadas {}
+explore: week2_completadas {}
+explore: week3_completadas {}
+explore: week4_completadas {}
+explore: week5_completadas {}
+
+explore: edad_mas_repetida {}
+explore: genero_mas_repetido {}
+explore: ciudad_mas_repetida {}
+explore: preguntas_equity {}

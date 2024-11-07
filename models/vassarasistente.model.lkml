@@ -14,6 +14,10 @@ explore: option_vassar {}
 
 explore: coupons_vassar {}
 
+explore: profiling {}
+
+explore: profiling_answers {}
+
 explore: questions_vassar {}
 
 explore: questionsets_vassar {}
@@ -21,6 +25,7 @@ explore: questionsets_vassar {}
 explore: session_vassar {}
 
 explore: users_vassar {}
+
 
 explore: total_registros {}
 explore: conversaciones_iniciadas_porcentaje {}
@@ -36,3 +41,7 @@ explore: edad_mas_repetida {}
 explore: genero_mas_repetido {}
 explore: ciudad_mas_repetida {}
 explore: preguntas_equity {}
+
+explore: weeks_completed {}
+
+explore: usuarios_por_semana {}

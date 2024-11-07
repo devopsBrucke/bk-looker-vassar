@@ -93,4 +93,7 @@ view: users_vassar {
     value_format: "0.00\%"
     description: "Porcentaje de conversaciones no iniciadas por el asistente"
   }
+ measure: count {
+   type: count
+ }
 }

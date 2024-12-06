@@ -11,11 +11,9 @@ view: preguntas_equity {
               jsonb_array_elements(u.profiling) AS profiling_item
           WHERE
               profiling_item->>'question' IN (
-                  'Club Colombia es una cerveza de alta calidad.',
                   'Club Colombia convierte tus momentos en ocasiones especiales.',
-                  'Club Colombia usa los mejores ingredientes en sus cervezas.',
-                  'Club Colombia es un excelente acompañante para las comidas.',
-                  'Club Colombia mejoró tu experiencia en la Feria Vassar.'
+                  'Club Colombia es una cerveza de alta calidad.',
+                  'Club Colombia es una cerveza que te gusta que te vean consumir.'
               )
       ),
       votaciones AS (

@@ -1,12 +1,18 @@
 view: edad_mas_repetida {
   derived_table: {
     sql: SELECT
-          age AS Edad,
+          CASE
+            WHEN age = 'null' OR age IS NULL THEN 'No definida'
+            ELSE age
+          END AS Edad,
           COUNT(*) AS Cantidad
       FROM
           users_vassar
       GROUP BY
-          age
+          CASE
+            WHEN age = 'null' OR age IS NULL THEN 'No definida'
+            ELSE age
+          END
       ORDER BY
           COUNT(*) DESC
       LIMIT 1 ;;
@@ -20,11 +26,13 @@ view: edad_mas_repetida {
   dimension: edad {
     type: string
     sql: ${TABLE}."edad" ;;
+    description: "Edad más repetida o 'No definida' si es NULL o 'null'"
   }
 
   dimension: cantidad {
     type: number
     sql: ${TABLE}."cantidad" ;;
+    description: "Cantidad de usuarios con la edad más repetida"
   }
 
   set: detail {
@@ -33,4 +41,4 @@ view: edad_mas_repetida {
       cantidad
     ]
   }
-  }
+}

@@ -11,7 +11,11 @@ view: users_vassar {
 
   dimension: age {
     type: string
-    sql: ${TABLE}."age" ;;
+    sql: CASE
+           WHEN ${TABLE}."age" = 'null' OR ${TABLE}."age" IS NULL THEN 'No definida'
+           ELSE ${TABLE}."age"
+         END ;;
+    description: "Edad, muestra 'No definida' si es NULL o 'null'"
   }
 
   dimension: citizen_id {
@@ -21,7 +25,11 @@ view: users_vassar {
 
   dimension: city {
     type: string
-    sql: ${TABLE}."city" ;;
+    sql: CASE
+           WHEN ${TABLE}."city" = 'null' OR ${TABLE}."city" IS NULL THEN 'No definida'
+           ELSE ${TABLE}."city"
+         END ;;
+    description: "Ciudad, muestra 'No definida' si es NULL o 'null'"
   }
 
   dimension: complete_conversation {
@@ -46,7 +54,11 @@ view: users_vassar {
 
   dimension: gender {
     type: string
-    sql: ${TABLE}."gender" ;;
+    sql: CASE
+           WHEN ${TABLE}."gender" = 'null' OR ${TABLE}."gender" IS NULL THEN 'No definida'
+           ELSE ${TABLE}."gender"
+         END ;;
+    description: "Género, muestra 'No definida' si es NULL o 'null'"
   }
 
   dimension: phone {
@@ -69,9 +81,11 @@ view: users_vassar {
     type: count
     description: "Total de conversaciones registradas"
   }
-  measure: total_registros{
+
+  measure: total_registros {
     type: count
   }
+
   # Medida para porcentaje de conversaciones iniciadas
   measure: porcentaje_conversaciones_iniciadas {
     type: number
@@ -93,7 +107,8 @@ view: users_vassar {
     value_format: "0.00\%"
     description: "Porcentaje de conversaciones no iniciadas por el asistente"
   }
- measure: count {
-   type: count
- }
+
+  measure: count {
+    type: count
+  }
 }

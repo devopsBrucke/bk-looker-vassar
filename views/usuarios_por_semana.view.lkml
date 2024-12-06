@@ -24,7 +24,10 @@ view: usuarios_por_semana {
           s.semana
       )
       SELECT
-        s.semana,
+        CASE
+          WHEN s.semana = 1 THEN 'Pre evento'
+          WHEN s.semana = 2 THEN 'Post evento'
+        END AS semana,
         COALESCE(up.cantidad_usuarios, 0) AS cantidad_usuarios,
         ROUND(COALESCE(up.cantidad_usuarios, 0) * 100.0 / t.total, 2) AS porcentaje_usuarios
       FROM
@@ -38,9 +41,9 @@ view: usuarios_por_semana {
   }
 
   dimension: semana {
-    type: number
+    type: string
     sql: ${TABLE}.semana ;;
-    description: "Semana en la que los usuarios se quedaron"
+    description: "Indica si es pre o post evento"
   }
 
   dimension: cantidad_usuarios {

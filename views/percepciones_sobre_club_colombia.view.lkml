@@ -10,14 +10,12 @@ view: percepciones_sobre_club_colombia {
           JOIN
               profiling_answers pa ON p.profiling_id = pa.profiling_id
           JOIN
-              users_vassar u ON u.citizen_id = p.citizen_id
+              users_vassar u ON u.phone = p.phone
           WHERE
               p.question IN (
-                  'Club Colombia es una cerveza de alta calidad.',
                   'Club Colombia convierte tus momentos en ocasiones especiales.',
-                  'Club Colombia usa los mejores ingredientes en sus cervezas.',
-                  'Club Colombia es un excelente acompañante para las comidas.',
-                  'Club Colombia mejoró tu experiencia en la Feria Vassar.'
+                  'Club Colombia es una cerveza de alta calidad.',
+                  'Club Colombia es una cerveza que te gusta que te vean consumir.'
               )
       ),
       votaciones AS (

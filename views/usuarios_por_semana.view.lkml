@@ -5,28 +5,21 @@ view: usuarios_por_semana {
         SELECT COUNT(*) AS total FROM users_vassar
       ),
       semanas AS (
-        SELECT 1 AS semana UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+        SELECT 1 AS semana UNION ALL SELECT 2
       ),
       usuarios_por_semana AS (
         SELECT
           s.semana,
-          COUNT(DISTINCT u.citizen_id) AS cantidad_usuarios
+          COUNT(DISTINCT u.phone) AS cantidad_usuarios
         FROM
           semanas s
         LEFT JOIN users_vassar u ON 1=1
-        LEFT JOIN weeks_completed wc1 ON u.citizen_id = wc1.citizen_id AND wc1.week_number = 1 AND wc1.completed = true
-        LEFT JOIN weeks_completed wc2 ON u.citizen_id = wc2.citizen_id AND wc2.week_number = 2 AND wc2.completed = true
-        LEFT JOIN weeks_completed wc3 ON u.citizen_id = wc3.citizen_id AND wc3.week_number = 3 AND wc3.completed = true
-        LEFT JOIN weeks_completed wc4 ON u.citizen_id = wc4.citizen_id AND wc4.week_number = 4 AND wc4.completed = true
-        LEFT JOIN weeks_completed wc5 ON u.citizen_id = wc5.citizen_id AND wc5.week_number = 5 AND wc5.completed = true
+        LEFT JOIN weeks_completed wc1 ON u.phone = wc1.phone AND wc1.week_number = 1 AND wc1.completed = true
+        LEFT JOIN weeks_completed wc2 ON u.phone = wc2.phone AND wc2.week_number = 2 AND wc2.completed = true
         WHERE
           (s.semana = 1 AND wc1.week_number = 1 AND (wc2.week_number IS NULL OR wc2.completed = false))
           OR
-          (s.semana = 2 AND wc1.week_number = 1 AND wc2.week_number = 2 AND (wc3.week_number IS NULL OR wc3.completed = false))
-          OR
-          (s.semana = 3 AND wc1.week_number = 1 AND wc2.week_number = 2 AND wc3.week_number = 3 AND (wc4.week_number IS NULL OR wc4.completed = false))
-          OR
-          (s.semana = 4 AND wc1.week_number = 1 AND wc2.week_number = 2 AND wc3.week_number = 3 AND wc4.week_number = 4 AND (wc5.week_number IS NULL OR wc5.completed = false))
+          (s.semana = 2 AND wc1.week_number = 1 AND wc2.week_number = 2 )
         GROUP BY
           s.semana
       )

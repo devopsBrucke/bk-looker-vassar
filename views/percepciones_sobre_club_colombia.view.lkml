@@ -1,4 +1,3 @@
-
 view: percepciones_sobre_club_colombia {
   derived_table: {
     sql: WITH preguntas_respuestas AS (
@@ -11,12 +10,10 @@ view: percepciones_sobre_club_colombia {
               profiling_answers pa ON p.profiling_id = pa.profiling_id
           JOIN
               users_vassar u ON u.phone = p.phone
-          WHERE
-              p.question IN (
-                  'Club Colombia convierte tus momentos en ocasiones especiales.',
-                  'Club Colombia es una cerveza de alta calidad.',
-                  'Club Colombia es una cerveza que te gusta que te vean consumir.'
-              )
+          WHERE p.question LIKE '%Club Colombia convierte tus momentos en ocasiones especiales%'
+             OR p.question LIKE '%Club Colombia es una cerveza de alta calidad%'
+             OR p.question LIKE '%Club Colombia es una cerveza que te gusta que te vean consumir%'
+
       ),
       votaciones AS (
           SELECT
@@ -33,7 +30,7 @@ view: percepciones_sobre_club_colombia {
               pregunta,
               respuesta,
               cantidad,
-              ROW_NUMBER() OVER (PARTITION BY pregunta ORDER BY cantidad DESC) AS rn
+              RANK() OVER (PARTITION BY pregunta ORDER BY cantidad DESC) AS rn  -- Usamos RANK en lugar de ROW_NUMBER para manejar empates
           FROM
               votaciones
       ),
@@ -86,10 +83,10 @@ view: percepciones_sobre_club_colombia {
 
   set: detail {
     fields: [
-        pregunta,
-  respuesta,
-  cantidad,
-  total_respuestas
+      pregunta,
+      respuesta,
+      cantidad,
+      total_respuestas
     ]
   }
 }

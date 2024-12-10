@@ -45,5 +45,7 @@ explore: preguntas_equity {}
 explore: weeks_completed {}
 
 explore: usuarios_por_semana {}
+explore: interaccion {}
+explore: total_nuevos {}
 
 explore: percepciones_sobre_club_colombia {}

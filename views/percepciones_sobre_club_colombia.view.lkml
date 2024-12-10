@@ -13,7 +13,10 @@ view: percepciones_sobre_club_colombia {
           WHERE p.question LIKE '%Club Colombia convierte tus momentos en ocasiones especiales%'
              OR p.question LIKE '%Club Colombia es una cerveza de alta calidad%'
              OR p.question LIKE '%Club Colombia es una cerveza que te gusta que te vean consumir%'
-
+             OR p.question LIKE '%¿Qué tan frecuente tomas Club Colombia?%'
+             OR p.question LIKE '%¿En qué ocación consumes Club Colombia?%'
+             OR p.question LIKE '%Club Colombia es un excelente acompañante para tus comidas%'
+             OR p.question LIKE '%Cuéntame, si tuvieras que describir en una palabra cómo mejoró Club Colombia tu experiencia en la feria Vassar, ¿cuál sería?%'
       ),
       votaciones AS (
           SELECT
@@ -30,7 +33,7 @@ view: percepciones_sobre_club_colombia {
               pregunta,
               respuesta,
               cantidad,
-              RANK() OVER (PARTITION BY pregunta ORDER BY cantidad DESC) AS rn  -- Usamos RANK en lugar de ROW_NUMBER para manejar empates
+              RANK() OVER (PARTITION BY pregunta ORDER BY cantidad DESC) AS rn
           FROM
               votaciones
       ),
@@ -81,12 +84,19 @@ view: percepciones_sobre_club_colombia {
     sql: ${TABLE}."total_respuestas" ;;
   }
 
+  dimension: porcentaje_respuesta {
+    type: number
+    value_format: "0.00%"  # Opcional, para mostrar el valor en porcentaje
+    sql: ${TABLE}."cantidad" * 1.0 / ${TABLE}."total_respuestas" ;;
+  }
+
   set: detail {
     fields: [
       pregunta,
       respuesta,
       cantidad,
-      total_respuestas
+      total_respuestas,
+      porcentaje_respuesta
     ]
   }
 }
